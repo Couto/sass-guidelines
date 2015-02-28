@@ -16,15 +16,13 @@ Posto desta forma, voçês conheçem o ditado:
 > Nunca digas nunca.<br>
 > &mdash; Aparentemente, [não foi a Beyonce](https://github.com/HugoGiraudel/sass-guidelines/issues/31#issuecomment-69112419).
 
-Há cenários onde extender selectores pode valer a pena e ajudar. No entanto, no entanto estejam sempre conscientes destas regras para não ficarem
+Há cenários onde extender selectores pode valer a pena e ajudar. No entanto, estejam sempre conscientes destas regras para evitar problemas:
 
-There are scenarios where extending selectors might be helpful and worthwhile. Yet, always keep in mind those rules so you don't get yourself into trouble:
+* Usem o extend apenas dentro do modulo, não através de módulos diferentes.
+* Usem o extend em placeholders exclusivamente e não em selectores reais.
+* Tenham a certeza que o placeholder que estão a extender se encontra presente o minimo possivel pela folha de estilos.
 
-* Use extend from within a module, not across different modules.
-* Use extend on placeholders exclusively, not on actual selectors.
-* Make sure the placeholder you extend is present as little as possible in the stylesheet.
-
-If you are going to use extend, let me also remind you that it does not play well with `@media` blocks. As you may know, Sass is unable to extend an outer selector from within a media query. When doing so, the compiler simply crashes, telling you that you cannot do such a thing. Not great. Especially since media queries are almost all we do know.
+Se vão usar o extend, deixem-me também lemrbar que ele não funciona bem com blocos `@media`. Tal como devem saber, o Sass é incapaz de extender um selector exterior apartir de dentro de uma media query. Quando se experimenta, o compilador simplesmente rebenta, avisando-vos de que não consegue fazer tal coisa. Não é bom. Especialmente porque media queries são maioritariamente o que fazemos agora.
 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
@@ -35,7 +33,7 @@ If you are going to use extend, let me also remind you that it does not play wel
 
 @media print {
   .bar {
-    // This doesn't work. Worse: it crashes.
+    // Isto não funciona. Pior: rebenta.
     @extend .foo;
   }
 }
@@ -48,21 +46,22 @@ If you are going to use extend, let me also remind you that it does not play wel
 
 @media print
   .bar
-    // This doesn't work. Worse: it crashes.
+    // Isto não funciona. Pior: rebenta.
     @extend .foo
 {% endhighlight %}
   </div>
 </div>
 
-> You may not @extend an outer selector from within @media.<br>
-> You may only @extend selectors within the same directive.
+> Voçês não devem usar o @extend num selector exterior apartir de dentro de um bloco @media. <br>
+> Voçês só devem usar o @extend em selectors apartir de dentro da mesma directiva.
+
 
 <div class="note">
-  <p>It is often said that <code>@extend</code> helps with the file size since it combines selectors rather than duplicated properties. That is true, however the difference is negligible once <a href="http://en.wikipedia.org/wiki/Gzip">Gzip</a> has done its compression.</p>
-  <p>That being said, if you cannot use Gzip (or any equivalent) then switching to a <code>@extend</code> approach might not be that bad as long as you know what you are doing.</p>
-</div>
+  <p>É ocasionalmente dito que <code>@extend</code>  ajuda az reduzir o tamanho do ficheiro, uma vez que combina selectores em vez de duplicar propiedades. Isto é verdade, no entanto a diferença é negligenciável assim o <a href="http://en.wikipedia.org/wiki/Gzip">Gzip</a> faça a sua compressão.</p>
+  <p>Dito isso, se não puderem usar Gzip (ou algo equivalente) então mudar a abordagem para usar o <code>@extend</code> pode não ser assim tão mau, desde que saibam o que estão a fazer.</p>
+ </div>
 
-To sum up, I would **advise against using the `@extend` directive**, unless under some specific circumstances, but I would not go as far as to forbid it.
+Para resumir, eu **desaconselho o uso da directiva `@extend`**, com excepção de algumas circustâncias especificas, mas não iria tão longe como proibir o seu uso.
 
 
 
