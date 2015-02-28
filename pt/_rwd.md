@@ -15,14 +15,14 @@ Pelos mesmos motivos, breakpoints não devem ter nomes de dispositivos, mas sim 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
-// Yep
+// Sim
 $breakpoints: (
-  'medium': (min-width: 800px),
-  'large': (min-width: 1000px),
-  'huge': (min-width: 1200px),
+  'medio': (min-width: 800px),
+  'grande': (min-width: 1000px),
+  'enorme': (min-width: 1200px),
 );
 
-// Nope
+// Não
 $breakpoints: (
   'tablet': (min-width: 800px),
   'computer': (min-width: 1000px),
@@ -35,27 +35,27 @@ $breakpoints: (
 // Yep
 $breakpoints: ("medium": (min-width: 800px), "large": (min-width: 1000px), "huge": (min-width: 1200px))
 
-// Nope
+// Não
 $breakpoints: ("tablet": (min-width: 800px), "computer": (min-width: 1000px), "tv": (min-width: 1200px))
 {% endhighlight %}
   </div>
 </div>
 
-Por esta altura, qualquer convenção serve, desde que ajude a clarificar que o design não está intimamente agarrado a um tipo de dispositivo especifíco e que dê uma ideia de escala de magnitudes.
+Por esta altura, qualquer convenção serve, desde que ajude a clarificar que o design não está intimamente agarrado a um tipo de dispositivo especifíco e que dê uma ideia da escala de magnitudes.
 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $breakpoints: (
-  'seed': (min-width: 800px),
-  'sprout': (min-width: 1000px),
-  'plant': (min-width: 1200px),
+  'semente': (min-width: 800px),
+  'rebento': (min-width: 1000px),
+  'planta': (min-width: 1200px),
 );
 {% endhighlight %}
   </div>
   <div class="code-block__wrapper" data-syntax="sass">
 {% highlight sass %}
-$breakpoints: ("seed": (min-width: 800px), "sprout": (min-width: 1000px), "plant": (min-width: 1200px))
+$breakpoints: ("semente": (min-width: 800px), "rebento": (min-width: 1000px), "planta": (min-width: 1200px))
 {% endhighlight %}
   </div>
 </div>
@@ -63,7 +63,7 @@ $breakpoints: ("seed": (min-width: 800px), "sprout": (min-width: 1000px), "plant
 
 
 
-### Further reading
+### Leitura Adicional
 
 * [Naming Media Queries](http://css-tricks.com/naming-media-queries/)
 
@@ -72,14 +72,14 @@ $breakpoints: ("seed": (min-width: 800px), "sprout": (min-width: 1000px), "plant
 
 
 
-## Breakpoint manager
+## Gestor de Breakpoints
 
 Assim que definam os breakpoints da maneira que quiserem, voçês precisam de arranjar uma maneira de os usar realmente em media queries. Há imensas maneiras de o fazer, mas confesso que sou grande fã do mapa de breakpoints acedido por uma função de leitura. Este sistema é simples e eficiente.
 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
-/// Responsive manager.
+/// Gestor Responsivo.
 /// @access public
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
@@ -99,7 +99,7 @@ Assim que definam os breakpoints da maneira que quiserem, voçês precisam de ar
   </div>
   <div class="code-block__wrapper" data-syntax="sass">
 {% highlight sass %}
-/// Responsive manager.
+/// Gestor Responsivo.
 /// @access public
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
@@ -109,20 +109,20 @@ Assim que definam os breakpoints da maneira que quiserem, voçês precisam de ar
       @content
 
   @else
-    @error 'No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.'
+    @error 'Nenhum valor encontrado para `#{$breakpoint}`. '
+         + 'Por favor assegure que está definido no mapa `$breakpoints`.'
 {% endhighlight %}
   </div>
 </div>
 
 <div class="note">
-  <p>Obviously, this is a fairly simplistic breakpoint manager that will not do the trick when dealing with custom and/or multiple-checks breakpoints.</p>
-  <p>If you need a slightly more permissive breakpoint manager, may I recommend you do not reinvent the wheel and use something that has been proven effective such as <a href="https://github.com/sass-mq/sass-mq">Sass-MQ</a>, <a href="http://breakpoint-sass.com/">Breakpoint</a> or <a href="https://github.com/eduardoboucas/include-media">include-media</a>.</p>
+  <p>Obviamente, este é um gestor de breakpoints bastante simplista que não irá funcionar quando for preciso lidar com breakpoints customizados ou que necessitem de multiplas verificações. </p>
+  <p>Se precisa de um gestor de breakpoints um bocado mais permissivo, permita-me recomendar que não reinvente a roda e que use algo que já provou ser eficaz, tal como <a href="https://github.com/sass-mq/sass-mq">Sass-MQ</a>, <a href="http://breakpoint-sass.com/">Breakpoint</a> ou <a href="https://github.com/eduardoboucas/include-media">include-media</a>.</p>
 </div>
 
 
 
-### Further Reading
+### Leitura Adicional
 
 * [Managing Responsive Breakpoints in Sass](http://www.sitepoint.com/managing-responsive-breakpoints-sass/)
 * [Approaches to Media Queries in Sass](http://css-tricks.com/approaches-media-queries-sass/)
@@ -183,7 +183,7 @@ Agora, se realmente tiverem preocupados com a duplicação das media queries, po
 
 
 
-### Further Reading
+### Leitura Adicional
 
 * [Sass and Media Queries](http://sasscast.tumblr.com/post/38673939456/sass-and-media-queries)
 * [Inline or Combined Media queries? Fight!](http://benfrain.com/inline-or-combined-media-queries-in-sass-fight/)
